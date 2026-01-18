@@ -1,0 +1,33 @@
+{
+  "folders": [
+    {
+      "id": "f8b862cc-7b4e-4521-b884-bdc81fbf50d3",
+      "name": "Backup",
+      "type": "folder",
+      "createdAt": "2026-01-17T12:20:17.6350303"
+    }
+  ],
+  "files": [
+    {
+      "id": "74eed6d3-e106-450c-9c40-04427dfe978b",
+      "originalName": "India.txt",
+      "type": "file",
+      "size": 1040,
+      "createdAt": "2026-01-17T12:19:16.9250598"
+    },
+    {
+      "id": "0be0679d-06c3-4b08-8970-8a357b0054a8",
+      "originalName": "Project 1.xlsx",
+      "type": "file",
+      "size": 15872,
+      "createdAt": "2026-01-17T12:19:28.023543"
+    },
+    {
+      "id": "78b864cd-0245-443b-b8ed-a38ffba7d086",
+      "originalName": "Chetonar Dorrshon.pdf",
+      "type": "file",
+      "size": 1633682,
+      "createdAt": "2026-01-17T12:19:05.7820995"
+    }
+  ]
+}
