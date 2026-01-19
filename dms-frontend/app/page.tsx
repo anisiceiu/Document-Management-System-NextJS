@@ -21,26 +21,6 @@ export default function Home() {
               <h1 className="display-4 fw-bold">Welcome to Our DMS</h1>
               <p className="lead text-muted">
                 These are the essentials every small business should expect in a DMS:
-
-📌 1. Centralized Document Storage
-
-Store all files in a single location
-
-Easy organization with folders/tags/categories
-
-📌 2. Full‑Text Search & Metadata
-
-Search by keywords inside documents
-
-Add metadata (tags, dates, authors, project names) to speed retrieval
-
-📌 3. Version Control
-
-Track edits and history
-
-Restore older versions
-
-Prevent overwrites and conflicts
               </p>
               <a href="/login" className="btn btn-primary btn-lg mt-3">
                 Get Started
