@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLayout } from '../../providers/LayoutProvider';
-import {API_BASE_URL } from '../../utils/constants';
+import { useLayout } from '../../../providers/LayoutProvider';
+import {API_BASE_URL } from '../../../utils/constants';
 
 export default function Home() {
    const { layoutState, setBreadcrumbs,setFiles } = useLayout();
