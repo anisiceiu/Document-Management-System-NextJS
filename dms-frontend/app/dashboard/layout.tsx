@@ -3,12 +3,13 @@ import { FaFolder, FaTrash, FaHome, FaClock, FaFolderOpen } from 'react-icons/fa
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles.css';
 import Link from 'next/link';
-import { useState } from 'react';
+
 import { LayoutProvider, useLayout } from '../../providers/LayoutProvider';
 import BootBreadcrumbs from '../../components/files/breadcumb';
 import FileGrid from '../../components/files/FileGrid';
 import {logout} from '../../lib/auth';
 import { useRouter } from 'next/navigation';
+import FileSearchGrid from '../../components/FileSearchGrid';
 
 export default function Layout({
   children,
@@ -22,6 +23,7 @@ const router = useRouter();
  }
 
   return (
+    <LayoutProvider>
     <div>
 
       <nav className="navbar navbar-light bg-white border-bottom px-3">
@@ -47,21 +49,17 @@ const router = useRouter();
           </div>
 
           {/* Main */}
-          <LayoutProvider>
+          
             <div className="col-10 p-4">
               <BootBreadcrumbs />
               {children}
-              <div className="d-flex justify-content-between align-items-center mb-4">
-                <h3>My Drive</h3>
-                <input type="text" className="form-control w-50" placeholder="Search files..." />
-              </div>
+              <FileSearchGrid/>
               <FileGrid />
             </div>
-          </LayoutProvider>
         </div>
       </div>
     </div>
-
+</LayoutProvider>
 
   )
 }

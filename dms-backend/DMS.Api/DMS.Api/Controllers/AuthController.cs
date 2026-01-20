@@ -2,7 +2,6 @@
 using DMS.Api.DTOs;
 using DMS.Api.Infrastructure;
 using DMS.Api.Infrastructure.Persistance;
-using DMS.Api.Migrations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

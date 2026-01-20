@@ -18,6 +18,74 @@ namespace DMS.Api.Controllers
             _context = context;
         }
 
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search(
+        [FromQuery] string q,
+        [FromQuery] Guid? folderId,
+        [FromQuery] string type = "all")
+        {
+            if (string.IsNullOrWhiteSpace(q))
+                return Ok(new List<SearchResultDto>());
+
+            q = q.ToLower();
+
+            var results = new List<SearchResultDto>();
+
+            /* -----------------------
+               Search Files
+            ------------------------ */
+            if (type == "all" || type == "file")
+            {
+                var filesQuery = _context.Documents
+                    .Where(f => !f.IsDeleted &&
+                                f.OriginalName.ToLower().Contains(q));
+
+                if (folderId.HasValue)
+                    filesQuery = filesQuery.Where(f => f.FolderId == folderId);
+
+                var files = await filesQuery
+                    .Select(f => new SearchResultDto
+                    {
+                        Id = f.Id,
+                        Name = f.OriginalName,
+                        Type = "file",
+                        Extension = f.Extension,
+                        Size = f.Size,
+                        CreatedAt = f.CreatedAt
+                    })
+                    .ToListAsync();
+
+                results.AddRange(files);
+            }
+
+            /* -----------------------
+               Search Folders
+            ------------------------ */
+            if (type == "all" || type == "folder")
+            {
+                var foldersQuery = _context.Folders
+                    .Where(f => !f.IsDeleted &&
+                                f.Name.ToLower().Contains(q));
+
+                if (folderId.HasValue)
+                    foldersQuery = foldersQuery.Where(f => f.ParentFolderId == folderId);
+
+                var folders = await foldersQuery
+                    .Select(f => new SearchResultDto
+                    {
+                        Id = f.Id,
+                        Name = f.Name,
+                        Type = "folder",
+                        CreatedAt = f.CreatedAt
+                    })
+                    .ToListAsync();
+
+                results.AddRange(folders);
+            }
+
+            return Ok(results.OrderByDescending(x => x.CreatedAt));
+        }
+
         [HttpGet("GetRootFolder")]
         public  async Task<IActionResult> GetRootFolder()
         {
